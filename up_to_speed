@@ -3,4 +3,5 @@ sudo aptitude update
 sudo aptitude dist-upgrade
 sudo aptitude clean
 clean_stale_configs.sh
+sudo gem update
 sudo nice updatedb
