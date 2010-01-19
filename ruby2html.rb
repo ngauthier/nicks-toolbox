@@ -9,7 +9,7 @@ require 'syntax/convertors/html'
 CSS = <<-CSSSRC
 <style type="text/css">
 /* Syntax highlighting */
-pre {font-size: 2em; font-family: mono, monospace, courier;}
+pre {font-family: mono, monospace, courier;}
 pre .normal {}
 pre .comment { color: #005; font-style: italic; }
 pre .keyword { color: #A00; font-weight: bold; }
