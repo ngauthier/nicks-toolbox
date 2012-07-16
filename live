@@ -1,0 +1,5 @@
+#/usr/bin/env sh
+# Usage "live command"
+clear
+$*
+while inotifywait -qr -e close_write *; do clear; $*; done

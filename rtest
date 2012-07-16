@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+ruby -Ilib:test `bundle list rake`/lib/rake/rake_test_loader.rb $*
