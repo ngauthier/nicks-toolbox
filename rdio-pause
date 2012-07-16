@@ -1,0 +1,2 @@
+#!/bin/sh
+xdotool key --window $(xdotool search --name Rdio | head -1) space
