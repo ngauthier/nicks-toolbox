@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 set -e
-sudo apt-get -yq  update
-sudo apt-get -yfq dist-upgrade
-sudo apt-get -yq autoremove
-sudo apt-get -yq autoclean
-sudo updatedb
+if hash brew 2> /dev/null; then
+  brew update
+  brew upgrade
+  brew cleanup
+fi
+if hash apt-get 2> /dev/null; then
+  sudo apt-get -yq  update
+  sudo apt-get -yfq dist-upgrade
+  sudo apt-get -yq autoremove
+  sudo apt-get -yq autoclean
+  sudo updatedb
+fi
