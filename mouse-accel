@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [ $1 == 'off' ]; then
+  defaults write .GlobalPreferences com.apple.mouse.scaling -1
+  echo "Disabled mouse acceleration"
+else
+  defaults write .GlobalPreferences com.apple.mouse.scaling 1
+  echo "Enabled mouse acceleration"
+fi
