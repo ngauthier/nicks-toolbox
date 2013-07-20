@@ -1,15 +1,17 @@
 #/usr/bin/env sh
 # Usage "live command"
+set -e
+
 clear
-$*
+$@
 
 if [ `command -v inotifywait` ]
 then
-  while inotifywait -qr -e close_write *; do clear; $*; done
+  while inotifywait -qr -e close_write .; do clear; $@; done
 fi
 
 # Get from here: https://github.com/ggreer/fsevents-tools on mac
 if [ `command -v notifywait` ]
 then
-  while ! notifywait .; do clear; $*; done
+  while ! notifywait .; do clear; $@; done
 fi
