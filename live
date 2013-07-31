@@ -1,7 +1,5 @@
 #/usr/bin/env sh
 # Usage "live command"
-set -e
-
 clear
 $@
 
