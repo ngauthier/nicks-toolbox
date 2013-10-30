@@ -6,9 +6,9 @@ if hash brew 2> /dev/null; then
   brew cleanup
 fi
 if hash apt-get 2> /dev/null; then
-  sudo apt-get -yq  update
-  sudo apt-get -yfq dist-upgrade
-  sudo apt-get -yq autoremove
-  sudo apt-get -yq autoclean
+  sudo apt-get -y  update
+  sudo apt-get -yf dist-upgrade
+  sudo apt-get -y autoremove
+  sudo apt-get -y autoclean
   sudo updatedb
 fi
