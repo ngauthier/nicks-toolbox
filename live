@@ -1,5 +1,9 @@
 #/usr/bin/env sh
 # Usage "live command"
+# Runs the command, and then any time a file
+# in the current directory tree is written to,
+# re-runs the command.
+
 clear
 $@
 

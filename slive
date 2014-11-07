@@ -1,0 +1,16 @@
+#/usr/bin/env bash
+# Usage: "slive server-command"
+# Runs the command, which is expected to not terminate
+# (like a web server). When a file in the current directory
+# tree is written to, the command will be killed and then
+# re-run.
+
+clear
+($@) & pid=$!
+
+while inotifywait -qr -e close_write .; do
+  pkill -TERM -P $pid
+  wait $pid
+  clear
+  ($@) & pid=$!
+done
