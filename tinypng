@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+echo Sending $1 to tinypng.com ...
+
+response=`curl -s --user api:$TINYPNG --data-binary @$1 https://api.tinypng.com/shrink`
+
+url=`echo $response | jq -r ".output.url"`
+ratio=`echo $response | jq -r ".output.ratio"`
+curl -s -o $1 $url
+
+echo $1 is now $ratio its original size
