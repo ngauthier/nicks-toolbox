@@ -1,19 +1,37 @@
-#/usr/bin/env sh
+#!/bin/bash
+
 # Usage "live command"
 # Runs the command, and then any time a file
 # in the current directory tree is written to,
 # re-runs the command.
 
+function error_exit() { 
+  echo "${1}" >&2
+  exit 1 
+}
+
 clear
 $@
 
-if [ `command -v inotifywait` ]
-then
-  while inotifywait -qr -e close_write .; do clear; $@; done
-fi
-
-# Get from here: https://github.com/ggreer/fsevents-tools on mac
-if [ `command -v notifywait` ]
-then
-  while ! notifywait .; do clear; $@; done
-fi
+case "$(uname -s)" in
+  Linux)
+    which inotifywait >/dev/null || error_exit "you need 'inotifywait' command (apt-get install inotify-tools  or similar)"``
+    while true; do
+      inotifywait -qr -e close_write .
+      clear
+      $@
+    done
+    ;;
+  Darwin)
+    which fswatch >/dev/null || err "you need 'fswatch' command (brew install fswatch)"
+    fswatch -k -x . | while read x; do
+      if [ $(echo "${x}" | grep -cE Attribute) -eq 0 ]; then
+        clear
+        $@
+      fi
+    done
+    ;;
+  *)
+    error_exit "Unknown result from uname -s"
+    ;;
+esac
