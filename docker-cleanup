@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+containers=`docker ps -a -q -f status=exited | xargs`
+if [[ $containers ]]; then
+  docker rm $containers
+else
+  echo "No containers to remove"
+fi
+
+images=`docker images -a -q -f dangling=true | xargs`
+if [[ $images ]]; then
+  docker rmi $images
+else
+  echo "No images to remove"
+fi
+
+docker ps -a
+docker images -a
