@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+echo "Updating vim bundles..."
+bundle=~/.vim/bundle
+for d in $( ls $bundle ); do
+  echo "Updating $d"
+  cd $bundle/$d
+  git pull
+done
+
+echo "done"
+
