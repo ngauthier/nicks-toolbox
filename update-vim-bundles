@@ -6,6 +6,7 @@ for d in $( ls $bundle ); do
   echo "Updating $d"
   cd $bundle/$d
   git pull
+  git gc
 done
 
 echo "done"
