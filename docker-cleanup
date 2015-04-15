@@ -13,5 +13,4 @@ else
   echo "No images to remove"
 fi
 
-docker ps -a
-docker images -a
+docker images
