@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-command="bash -i -c \"vim $@\""
-xfce4-terminal -I /usr/share/icons/HighContrast/256x256/apps/vim.png --title vim -e "$command"
+xfce4-terminal -I /usr/share/icons/HighContrast/256x256/apps/vim.png --title vim -e 'bash -i -c vim'
