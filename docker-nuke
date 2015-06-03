@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+images=`docker images | grep "^\S\+/" | awk '{ print $3 }' | xargs `
+if [[ $images ]]; then
+  docker rmi $images
+else
+  echo "No non official images to remove"
+fi
+
+docker-cleanup
