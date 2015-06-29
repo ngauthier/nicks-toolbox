@@ -4,6 +4,10 @@ def notify(msg)
   `notify-send -i /home/nick/bin/nicks-toolbox/pom.png "Pomodoro" "#{msg}"`
 end
 
+def ding
+  system %{pacmd play-file /usr/share/sounds/freedesktop/stereo/complete.oga 1}
+end
+
 unless ARGV.size == 2
   puts "Usage: pomodoro <work time> <rest time>"
   exit(1)
@@ -27,11 +31,10 @@ notify "time to flow"
   end
 end
 
-`rhythmbox-client --pause`
-`gnome-screensaver-command -a`
+notify "STOP!"
+ding
 
 sleep REST * 60
 
-`gnome-screensaver-command -d`
 notify "Welcome Back"
-
+ding
