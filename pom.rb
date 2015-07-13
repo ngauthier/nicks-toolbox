@@ -5,7 +5,7 @@ def notify(msg)
 end
 
 def ding
-  system %{pacmd play-file /usr/share/sounds/freedesktop/stereo/complete.oga 1}
+  system %{pacmd play-file /usr/share/sounds/freedesktop/stereo/complete.oga #{SINK}}
 end
 
 unless ARGV.size == 2
@@ -15,6 +15,7 @@ end
 
 POMODORO = ARGV[0].to_i
 REST = ARGV[1].to_i
+SINK = `pacmd list-sinks | grep '^  \*' | awk '{print $3}'`.strip
 
 notify "time to flow"
 1.upto(POMODORO) do |minute|
