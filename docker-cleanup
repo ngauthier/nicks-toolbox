@@ -6,6 +6,13 @@ else
   echo "No containers to remove"
 fi
 
+volumes=`docker volume ls -q | xargs`
+if [[ $volumes ]]; then
+  docker volume rm $volumes
+else
+  echo "No volumes to remove"
+fi
+
 images=`docker images -a -q -f dangling=true | xargs`
 if [[ $images ]]; then
   docker rmi $images
