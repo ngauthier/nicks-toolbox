@@ -8,8 +8,10 @@ $watcher.IncludeSubdirectories = $true
 $watcher.EnableRaisingEvents = $false
 $watcher.NotifyFilter = [System.IO.NotifyFilters]::LastWrite
 
+Invoke-Expression "$args"
+
 while($TRUE){
-	$result = $watcher.WaitForChanged([System.IO.WatcherChangeTypes]::Changed -bor [System.IO.WatcherChangeTypes]::Created, 1000);
+	$result = $watcher.WaitForChanged([System.IO.WatcherChangeTypes]::Changed -bor [System.IO.WatcherChangeTypes]::Created, 200);
 	if($result.TimedOut){
 		continue;
 	}
